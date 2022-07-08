@@ -1,6 +1,10 @@
 <template>
-  <ul>
-    <li v-for="item in trackGridContent" :key="item.trackId">
+  <ul class="tracksGrid">
+    <li
+      class="tracksGrid__item"
+      v-for="item in trackGridContent"
+      :key="item.trackId"
+    >
       <TracksGridItem :item="item" />
     </li>
   </ul>
@@ -19,4 +23,19 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.tracksGrid {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-row-gap: 2rem;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 0;
+  }
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+</style>

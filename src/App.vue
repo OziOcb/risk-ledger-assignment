@@ -1,7 +1,7 @@
 <template>
-  <TheHeader />
+  <TheHeader class="container" />
 
-  <section>
+  <section class="container">
     <aside>sidebar</aside>
 
     <main>
