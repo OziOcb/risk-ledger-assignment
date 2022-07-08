@@ -1,0 +1,24 @@
+// BASE
+$color-black: #1A1110;
+$color-white: #C4C6B4;
+$color-grey: #494446;
+$color-green: #008080;
+$color-red: #B84509;
+$color-accent: $color-red;
+$color-outline: rgba(0, 123, 255, 0.5);
+$color-box-shadow: rgba(0, 0, 0, 0.25);
+
+// CONTENT
+$color-body-bg: $color-black;
+$color-body-bg-darker: #000;
+$color-body-bg-light: $color-white;
+$color-text-primary: $color-white;
+$color-text-secondary: $color-black;
+$color-heading-text: $color-text-primary;
+$color-primary: #B98157;
+$color-secondary: #70503B;
+$color-tertiary: #6D9796;
+
+// MENU
+$color-menu-gradient: radial-gradient(100% 225% at 100% 0%, $color-tertiary 0%, $color-black 100%), linear-gradient(236deg, $color-white 10%, $color-black 100%), linear-gradient(135deg, $color-accent 0%, $color-accent 36%, $color-primary 36%, $color-primary 60%, $color-secondary 60%, $color-secondary 67%, $color-black 67%, $color-black 100%);
+$color-menu-gradient-blend-mode: overlay, hard-light, normal;
