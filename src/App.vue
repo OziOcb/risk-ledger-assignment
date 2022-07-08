@@ -1,11 +1,19 @@
 <template>
-  <header>header</header>
+  <TheHeader />
 
-  <main>main</main>
+  <section>
+    <aside>sidebar</aside>
+
+    <main>main</main>
+  </section>
 </template>
 
 <script>
-export default {};
+import TheHeader from "@/components/TheHeader.vue";
+
+export default {
+  components: { TheHeader },
+};
 </script>
 
 <style lang="scss">
