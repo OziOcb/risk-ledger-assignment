@@ -13,6 +13,27 @@ import TheHeader from "@/components/TheHeader.vue";
 
 export default {
   components: { TheHeader },
+
+  created() {
+    const hash = window.location.hash.substring(1);
+
+    if (hash !== "") this.saveAccessToken(hash);
+  },
+
+  methods: {
+    saveAccessToken(hash) {
+      const result = hash.split("&").reduce(function (res, item) {
+        const parts = item.split("=");
+        res[parts[0]] = parts[1];
+        return res;
+      }, {});
+
+      localStorage.setItem("access_token", result.access_token);
+      localStorage.setItem("expires_in", result.expires_in);
+
+      history.replaceState(null, null, " ");
+    },
+  },
 };
 </script>
 
