@@ -12,7 +12,7 @@ export default {
     const state = uuidv4();
 
     localStorage.setItem("stateKey", state);
-    const scope = "user-read-private user-read-email";
+    const scope = "user-read-private user-read-email user-read-recently-played";
 
     let url = "https://accounts.spotify.com/authorize";
     url += "?response_type=token";
@@ -29,6 +29,22 @@ export default {
       const { data } = await axios({
         method: "GET",
         url: `${BASE_URL}/me`,
+        headers: {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  async getRecentlyPlayedTracks() {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: `${BASE_URL}/me/player/recently-played`,
         headers: {
           Authorization: `Bearer ${ACCESS_TOKEN}`,
         },

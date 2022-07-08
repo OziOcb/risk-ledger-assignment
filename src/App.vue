@@ -4,7 +4,11 @@
   <section>
     <aside>sidebar</aside>
 
-    <main>main</main>
+    <main>
+      <h2>Tracks</h2>
+
+      <TracksGrid />
+    </main>
   </section>
 </template>
 
@@ -12,9 +16,10 @@
 import { mapActions } from "pinia";
 import { useSpotifyStore } from "@/stores/spotify";
 import TheHeader from "@/components/TheHeader.vue";
+import TracksGrid from "@/components/TracksGrid.vue";
 
 export default {
-  components: { TheHeader },
+  components: { TheHeader, TracksGrid },
 
   created() {
     const hash = window.location.hash.substring(1);
@@ -22,11 +27,15 @@ export default {
     if (hash !== "") {
       this.saveAccessToken(hash);
       this.fetchUserData();
+      this.fetchRecentlyPlayedTracks();
     }
   },
 
   methods: {
-    ...mapActions(useSpotifyStore, ["fetchUserData"]),
+    ...mapActions(useSpotifyStore, [
+      "fetchUserData",
+      "fetchRecentlyPlayedTracks",
+    ]),
 
     saveAccessToken(hash) {
       const result = hash.split("&").reduce(function (res, item) {
