@@ -1,7 +1,8 @@
-// import axios from "axios";
+import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
-// const baseURL = "https://api.spotify.com/v1";
+const BASE_URL = "https://api.spotify.com/v1";
+const ACCESS_TOKEN = localStorage.getItem("access_token");
 
 export default {
   authorize() {
@@ -21,5 +22,21 @@ export default {
     url += "&state=" + encodeURIComponent(state);
 
     window.location = url;
+  },
+
+  async getCurrentUsersProfile() {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: `${BASE_URL}/me`,
+        headers: {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   },
 };

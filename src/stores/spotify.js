@@ -1,12 +1,21 @@
 import { defineStore } from "pinia";
-// import SpotifyService from "@/services/spotify-service";
+import SpotifyService from "@/services/spotify-service";
 
 export const useSpotifyStore = defineStore({
   id: "spotify",
 
-  state: () => ({}),
+  state: () => ({
+    userData: { name: "", spotifyUrl: "" },
+  }),
 
-  getters: {},
+  actions: {
+    async fetchUserData() {
+      const data = await SpotifyService.getCurrentUsersProfile();
 
-  actions: {},
+      this.userData = {
+        name: data.display_name,
+        spotifyUrl: data.external_urls.spotify,
+      };
+    },
+  },
 });

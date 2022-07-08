@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapActions } from "pinia";
+import { useSpotifyStore } from "@/stores/spotify";
 import TheHeader from "@/components/TheHeader.vue";
 
 export default {
@@ -17,10 +19,15 @@ export default {
   created() {
     const hash = window.location.hash.substring(1);
 
-    if (hash !== "") this.saveAccessToken(hash);
+    if (hash !== "") {
+      this.saveAccessToken(hash);
+      this.fetchUserData();
+    }
   },
 
   methods: {
+    ...mapActions(useSpotifyStore, ["fetchUserData"]),
+
     saveAccessToken(hash) {
       const result = hash.split("&").reduce(function (res, item) {
         const parts = item.split("=");
