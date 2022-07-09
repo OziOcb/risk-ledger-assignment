@@ -10,18 +10,24 @@
     <ul class="item__desc">
       <li><span>Artist:</span> {{ item.artistName }}</li>
       <li><span>Track:</span> {{ item.trackName }}</li>
-      <li><span>Last Time Played:</span> {{ item.playedAt }}</li>
+      <li><span>Played:</span> {{ timeAgo(item.playedAt) }}</li>
     </ul>
   </a>
 </template>
 
 <script>
+import timeAgo from "@/plugins/time-ago.js";
+
 export default {
   props: {
     item: {
       type: Object,
       required: true,
     },
+  },
+
+  methods: {
+    timeAgo,
   },
 };
 </script>
