@@ -2,7 +2,7 @@
   <ul class="tracksGrid">
     <li
       class="tracksGrid__item"
-      v-for="item in trackGridContent"
+      v-for="item in recentTracks"
       :key="item.trackId"
     >
       <TracksGridItem :item="item" />
@@ -12,13 +12,13 @@
 
 <script>
 import { mapState } from "pinia";
-import { useSpotifyStore } from "@/stores/spotify";
+import { useSpotifyStore } from "@/stores/spotifyStore";
 import TracksGridItem from "@/components/TracksGridItem.vue";
 
 export default {
   components: { TracksGridItem },
   computed: {
-    ...mapState(useSpotifyStore, ["trackGridContent"]),
+    ...mapState(useSpotifyStore, ["recentTracks"]),
   },
 };
 </script>

@@ -8,7 +8,7 @@
     <img class="item__img" :src="this.item.albumImageUrl" alt="album's cover" />
 
     <ul class="item__desc">
-      <li><span>Artist:</span> {{ item.artistName }}</li>
+      <li><span>Artist:</span> {{ item.artist.name }}</li>
       <li><span>Track:</span> {{ item.trackName }}</li>
       <li><span>Played:</span> {{ timeAgo(item.playedAt) }}</li>
     </ul>

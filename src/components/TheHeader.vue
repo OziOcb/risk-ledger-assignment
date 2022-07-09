@@ -18,7 +18,7 @@
 <script>
 import SpotifyService from "@/services/spotify-service";
 import { mapState } from "pinia";
-import { useSpotifyStore } from "@/stores/spotify";
+import { useSpotifyStore } from "@/stores/spotifyStore";
 
 export default {
   computed: {

@@ -2,7 +2,7 @@
   <TheHeader class="container" />
 
   <section class="container">
-    <aside>sidebar</aside>
+    <TheSidebar />
 
     <main>
       <h2>Tracks</h2>
@@ -14,12 +14,13 @@
 
 <script>
 import { mapActions } from "pinia";
-import { useSpotifyStore } from "@/stores/spotify";
+import { useSpotifyStore } from "@/stores/spotifyStore";
 import TheHeader from "@/components/TheHeader.vue";
+import TheSidebar from "@/components/TheSidebar.vue";
 import TracksGrid from "@/components/TracksGrid.vue";
 
 export default {
-  components: { TheHeader, TracksGrid },
+  components: { TheHeader, TheSidebar, TracksGrid },
 
   created() {
     const hash = window.location.hash.substring(1);

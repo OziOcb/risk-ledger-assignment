@@ -2,12 +2,18 @@ import { defineStore } from "pinia";
 import SpotifyService from "@/services/spotify-service";
 
 export const useSpotifyStore = defineStore({
-  id: "spotify",
+  id: "spotifyStore",
 
   state: () => ({
     userData: { name: "", spotifyUrl: "" },
-    trackGridContent: [],
+    recentTracks: [],
   }),
+
+  getters: {
+    getRecentArtists: (state) => {
+      return state.recentTracks.map((track) => track.artist);
+    },
+  },
 
   actions: {
     async fetchUserData() {
@@ -22,13 +28,16 @@ export const useSpotifyStore = defineStore({
     async fetchRecentlyPlayedTracks() {
       const data = await SpotifyService.getRecentlyPlayedTracks();
 
-      this.trackGridContent = data.items.map((item) => {
+      this.recentTracks = data.items.map((item) => {
         const { track } = item;
 
         return {
           playedAt: item.played_at,
           albumImageUrl: track.album.images[1].url,
-          artistName: track.artists[0].name,
+          artist: {
+            name: track.artists[0].name,
+            href: track.artists[0].href,
+          },
           spotifyUrl: track.external_urls.spotify,
           trackId: track.id,
           trackName: track.name,
