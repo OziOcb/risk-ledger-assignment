@@ -10,7 +10,9 @@
     <ul class="item__desc">
       <li><span>Artist:</span> {{ item.artist.name }}</li>
       <li><span>Track:</span> {{ item.trackName }}</li>
-      <li><span>Played:</span> {{ timeAgo(item.playedAt) }}</li>
+      <li v-if="item.playedAt">
+        <span>Played:</span> {{ timeAgo(item.playedAt) }}
+      </li>
     </ul>
   </a>
 </template>

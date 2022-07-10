@@ -2,8 +2,8 @@
   <ul class="tracksGrid">
     <li
       class="tracksGrid__item"
-      v-for="item in recentTracks"
-      :key="item.trackId"
+      v-for="(item, index) in tracksForGrid"
+      :key="`item.trackId${index}`"
     >
       <TracksGridItem :item="item" />
     </li>
@@ -18,7 +18,14 @@ import TracksGridItem from "@/components/TracksGridItem.vue";
 export default {
   components: { TracksGridItem },
   computed: {
-    ...mapState(useSpotifyStore, ["recentTracks"]),
+    ...mapState(useSpotifyStore, [
+      "displayedCategory",
+      "recentTracks",
+      "artistTracks",
+    ]),
+    tracksForGrid() {
+      return this[this.displayedCategory];
+    },
   },
 };
 </script>

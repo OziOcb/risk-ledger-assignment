@@ -55,4 +55,20 @@ export default {
       console.error(error);
     }
   },
+
+  async getArtistsTopTracks(artistId) {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: `${BASE_URL}/artists/${artistId}/top-tracks?market=gb`,
+        headers: {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };

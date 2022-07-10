@@ -1,15 +1,11 @@
 <template>
   <TheHeader class="container" />
 
-  <section class="container">
+  <main class="main container">
     <TheSidebar />
 
-    <main>
-      <h2>Tracks</h2>
-
-      <TracksGrid />
-    </main>
-  </section>
+    <TracksGrid />
+  </main>
 </template>
 
 <script>
@@ -107,5 +103,11 @@ body {
   height: 1px;
   white-space: nowrap;
   border: 0;
+}
+
+.main {
+  @media (min-width: $breakpoint-lg) {
+    display: flex;
+  }
 }
 </style>
