@@ -26,6 +26,14 @@ export default {
       this.fetchUserData();
       this.fetchRecentlyPlayedTracks();
     }
+
+    if (localStorage.getItem("access_token")) {
+      const that = this;
+      (function f() {
+        that.fetchRecentlyPlayedTracks();
+        setTimeout(f, 30000);
+      })();
+    }
   },
 
   methods: {
