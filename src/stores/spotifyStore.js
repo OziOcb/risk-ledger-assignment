@@ -4,6 +4,7 @@ import { displayCategories } from "@/utils/enums";
 
 export const useSpotifyStore = defineStore({
   id: "spotifyStore",
+  persist: true,
 
   state: () => ({
     userData: { name: "", spotifyUrl: "" },
