@@ -7,7 +7,10 @@ const BASE_URL = "https://api.spotify.com/v1";
 export default {
   authorize() {
     const client_id = "9ee40d36278b4ea8a8dcc9ad6bb71de0"; // Normally I would put this ID inside .env file
-    const redirect_uri = "http://localhost:3000/";
+    const redirect_uri =
+      import.meta.env.DEV === true
+        ? "http://localhost:3000/"
+        : "https://risk-ledger-assignment.netlify.app/";
 
     const state = uuidv4();
 
