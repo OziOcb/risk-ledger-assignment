@@ -1,5 +1,10 @@
 # Risk Ledger Frontend Code Exercise
 
+# Live Demo
+You can see this project in action by clicking [here](https://risk-ledger-assignment.netlify.app/)
+
+&nbsp;
+
 # Code Exercise
 If you don’t have any existing code you can show us, we’ve put together a code exercise for you to complete in your own time.
 We would like you to build a frontend single-page application, using any modern web framework of your choice. Your app should use the  [Spotify Web API](https://developer.spotify.com/documentation/web-api/)  to meet the below requirements, using the Implicit Grant Flow described within the documentation for authentication.
