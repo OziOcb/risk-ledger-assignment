@@ -1,8 +1,8 @@
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { useSpotifyStore } from "@/stores/spotifyStore";
 
 const BASE_URL = "https://api.spotify.com/v1";
-const ACCESS_TOKEN = localStorage.getItem("access_token");
 
 export default {
   authorize() {
@@ -30,13 +30,23 @@ export default {
         method: "GET",
         url: `${BASE_URL}/me`,
         headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
 
       return data;
     } catch (error) {
       console.error(error);
+
+      if (error.response?.status === 401) {
+        const spotifyStore = useSpotifyStore();
+        spotifyStore.$reset();
+
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("expires_in");
+        localStorage.removeItem("spotifyStore");
+        localStorage.removeItem("stateKey");
+      }
     }
   },
 
@@ -46,7 +56,7 @@ export default {
         method: "GET",
         url: `${BASE_URL}/me/player/recently-played`,
         headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
 
@@ -62,7 +72,7 @@ export default {
         method: "GET",
         url: `${BASE_URL}/artists/${artistId}/top-tracks?market=gb`,
         headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
 

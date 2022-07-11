@@ -23,11 +23,11 @@ export default {
 
     if (hash !== "") {
       this.saveAccessToken(hash);
-      this.fetchUserData();
-      this.fetchRecentlyPlayedTracks();
     }
 
     if (localStorage.getItem("access_token")) {
+      this.fetchUserData();
+
       const that = this;
       (function f() {
         that.fetchRecentlyPlayedTracks();
